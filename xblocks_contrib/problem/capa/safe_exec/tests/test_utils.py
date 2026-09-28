@@ -58,7 +58,7 @@ def send_safe_exec_request_locally(data: dict[str, Any]) -> tuple[str | None, Ex
             if mod_name not in original_modules:
                 del sys.modules[mod_name]
         for archive_path in python_path:
-            if importer := sys.path_importer_cache[archive_path]:
+            if importer := sys.path_importer_cache.get(archive_path):
                 importer.invalidate_caches()
         sys.path_importer_cache.clear()
     return None, None
