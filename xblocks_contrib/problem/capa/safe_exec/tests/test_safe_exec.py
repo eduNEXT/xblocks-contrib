@@ -14,7 +14,6 @@ from django.test import override_settings
 from six import unichr
 
 from xblocks_contrib.problem.capa.safe_exec import safe_exec, update_hash
-from xblocks_contrib.problem.capa.testing.codejail import UseUnsafeCodejail
 
 
 def make_python_library_zip_bytes():
@@ -129,7 +128,6 @@ class DictCache:
         self.cache[key] = value
 
 
-@UseUnsafeCodejail()
 class TestSafeExecCaching(unittest.TestCase):
     """Test that caching works on safe_exec."""
 
@@ -262,7 +260,6 @@ class TestUpdateHash(unittest.TestCase):
         assert h1 == h2
 
 
-@UseUnsafeCodejail()
 class TestRealProblems(unittest.TestCase):
     """Unit tests for executing real problem code snippets safely."""
 
