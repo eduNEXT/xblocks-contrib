@@ -155,8 +155,6 @@ def safe_exec(
                 raise SafeExecException(emsg)
             return
 
-    cacheable = True  # unless we get an unexpected error
-
     # Create the complete code we'll run.
     code_prolog = CODE_PROLOG % random_seed
 
@@ -177,7 +175,7 @@ def safe_exec(
 
     # Put the result back in the cache.  This is complicated by the fact that
     # the globals dict might not be entirely serializable.
-    if cache and cacheable:
+    if cache:
         cleaned_results = json_safe(globals_dict)
         cache.set(key, (emsg, cleaned_results))
 
